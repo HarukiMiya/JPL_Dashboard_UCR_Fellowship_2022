@@ -1,0 +1,40 @@
+html,
+body {
+    background-color: #FFFFFF;
+    font-family: "Hind", "Hannari", 'Noto Sans JP', 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 1.5vw;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+}
+
+nav{
+    background-color: #88aaf3;
+    height: 8vh;
+}
+
+.nav-bar{
+    display: inline-block;
+    width: 100vw;
+    height: 8vh;
+    text-align: center;
+    margin: 0px;
+}
+
+.nav-bar li{
+    cursor:pointer;
+    display: inline-block;
+    margin: auto;
+    padding: 2vh 1.5vw;
+    color: #000000;
+    font-size: 2.5vh;
+    border-bottom: 2px solid transparent;
+}
+
+.section-map{
+    width: 40vw;
+    height: auto;
+    float: right;
+    margin: 2.5vw;
+    padding-top: 20vh;
+}
