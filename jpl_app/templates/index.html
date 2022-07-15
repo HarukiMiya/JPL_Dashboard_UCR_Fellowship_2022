@@ -11,11 +11,16 @@
 </div>
 {% endblock %}
 
-{% block pics %}
-<img src="{% static 'newplot.png' %}" alt="newplot" style="width: 54vw;
-    height: auto;float: left;margin-top: 10vh;margin-left: 1vw;"/>
-<img src="{% static 'times.png' %}" alt="times" style="width: 54vw;
-height: auto;float: left;margin-top: 1vh;margin-left: 1vw;"/>
+{% block chartdata %}
+<div class="chart">
+    <canvas id="myChart" style="margin-top:-5vh;width:auto;height: 50vh;"></canvas>
+</div>
+{% endblock %}
 
+{% block pics %}
+<!-- <img src="{% static 'newplot.png' %}" alt="newplot" style="width: 54vw;
+    height: auto;float: left;margin-left: 1vw;"/> -->
+<!-- <img src="{% static 'times.png' %}" alt="times" style="width: 54vw;
+height: auto;float: left;margin-top: 1vh;margin-left: 1vw;"/> -->
 {% endblock %}
 
