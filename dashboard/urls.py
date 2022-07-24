@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("jpl_app.urls")),
     path('map/', include("jpl_app.urls")),
+    path('chart/', include("jpl_app.urls")),
 ]

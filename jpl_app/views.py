@@ -3,8 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 import folium
-import pandas as pd
-import csv
+from .models import TimeSeriesData
+
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -24,19 +24,13 @@ def index(request):
     return render(request, 'index.html', ctxt)
 
 def chart(request):
-    label = []
-    dataset = []
-    df_all = pd.read_csv("./jpl_app/static/InSAR_Data.csv")
-    df_all = df_all.set_index([df_all.columns[0],df_all.columns[1]])
-    df_all.fillna('NaN',inplace=True)
-
-    lat = -119.299
-    lon = 35.8852
-    getRow = "Longitude == " + str(lat) + " and Latitude == " + str(lon)
-
-    dataset_temp = df_all.query(getRow).values.tolist()
-    dataset = sum(dataset_temp, [])
-    label = df_all.columns.values.tolist()
+    intLon = -117.6414
+    intLat = 37.6256
+    time_series_list = TimeSeriesData.objects.filter(lon = str(intLon) , lat = str(intLat)).values_list()
+    time_series_list = list(sum(time_series_list, ()))
+    del time_series_list[:2]
+    dataset = time_series_list
+    dataset = ['NaN' if x==None else x for x in dataset]
 
     ma = folium.Map(location=[35.8831, -119.295], min_lat=34.0, max_lat=37.8,
                min_lon=-121.0, max_lon=-117.4, max_bounds=True, zoom_start=6, 
@@ -48,9 +42,9 @@ def chart(request):
     ma = ma._repr_html_()
 
     context={
-        'label': label,
         'dataset': dataset,
         'ma': ma,
     }
+
     return render(request, 'index.html', context)
 
