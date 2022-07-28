@@ -3,16 +3,21 @@
 {% load static %}
 
 {% block main %}
+{% comment %} <input type="hidden" id="Url" data-url="{% url 'jpl_app_url' id %}" /> {% endcomment %}
 {% endblock %}
 
 {% block content %}
-<div class="section-map">
+<div class="section-map" id="mapid">
     {{ ma | safe }}
+    {{ lat | safe }}
 </div>
+<form action="" method="get" id="mapform">
+    {% csrf_token %}
+</form>
 {% endblock %}
 
 {% block chartdata %}
-<div class="chart">
+<div class="chart" id="chartid">
     <canvas id="myChart" style="margin-top:-5vh;width:auto;height: 50vh;"></canvas>
 </div>
 {% endblock %}
