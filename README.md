@@ -148,7 +148,9 @@ CREATE TABLE time_series_data
 
 This will create all the necessary columns for the dataset.
 Now, run the following code:
+```
   SELECT * FROM time_series_data
+```
   
 You should now be able to see all the data, run the code to create the server, and have access to the server.
 
