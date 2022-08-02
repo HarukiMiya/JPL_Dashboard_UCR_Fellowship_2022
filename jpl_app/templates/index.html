@@ -8,8 +8,6 @@
 
 {% block content %}
 <div class="section-map" id="mapid">
-    Latitude: {{ lat | safe }},
-    Longitude: {{ lng | safe}}
     {{ ma | safe }}
 </div>
 <form action="" method="get" id="mapform">
@@ -18,6 +16,10 @@
 {% endblock %}
 
 {% block chartdata %}
+<div class="latlng">
+    Latitude: {{ lat | safe }},
+    Longitude: {{ lng | safe}}
+</div>
 <div class="chart" id="chartid">
     <canvas id="myChart" style="margin-top:-5vh;width:auto;height: 50vh;"></canvas>
 </div>

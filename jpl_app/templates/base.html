@@ -33,8 +33,6 @@
         {% block chartdata %}
         {% endblock %}
 
-        {% block pics %}
-        {% endblock %}
         <script>
             console.log("javascript is running");
             new Chart(document.getElementById("myChart"), {
@@ -64,6 +62,20 @@
                     scales: {
                         xAxes: [{
                             type: 'time',
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Date',
+                                fontStyle: 'bold',
+                                fontSize: 20
+                            },
+                        }],
+                        yAxes: [{
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Displacement (cm)',
+                                fontStyle: 'bold',
+                                fontSize: 20
+                            }
                         }]
                     }
                 }
