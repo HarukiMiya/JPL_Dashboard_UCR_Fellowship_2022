@@ -57,16 +57,18 @@ class LatLngPopupFix(MacroElement):
                         $.ajax({
                             type: "get",
                             headers:{'X-CSRFToken':'{{ csrf_token }}'},
-                            url: "http://127.0.0.1:8000/chart/",
+                            url: "http://127.0.0.1:8000/chart",
                             data: { 'latVal': latVal, 'lngVal': lngVal },
                             success: function (response) {
+                                parent.location.href = "/chart?latVal="+latVal+"&lngVal="+lngVal;
                                 console.log("ajax in views success");
                             },
                             error: function (response) {
                                 console.log("ajax in views fail")
                             },
                         })
-                        //parent.location.href = "http://127.0.0.1:8000/chart/";
+                        //parent.getElementById("").innerHTML="hello";
+                        
                     });
                     
                     
@@ -77,16 +79,16 @@ class LatLngPopupFix(MacroElement):
             super(LatLngPopupFix, self).__init__()
             self._name = 'LatLngPopup'
 
-def binary_search(arr, low, high, x):
-    if high >= low:
+def binary_search(arr, head, tail, x):
+    if head <= tail:
         global mid
-        mid = (low + high) // 2 
+        mid = (head + tail) // 2 
         if arr[mid] == x:
             return x
         elif arr[mid] > x:
-            return binary_search(arr, low, mid - 1, x)
+            return binary_search(arr, head, mid - 1, x)
         else:
-            return binary_search(arr, mid + 1, high, x)
+            return binary_search(arr, mid + 1, tail, x)
     else:
         return arr[mid]
 
@@ -98,10 +100,6 @@ def chart(request):
         strLon = str(request.GET.get('lngVal'))
         strLat = str(binary_search(lat_exist, 0, 1748, float(strLat)))
         strLon = str(binary_search(lng_exist, 0, 1654, float(strLon)))
-    # strLon = "-117.6414"
-    # strLat = "37.6236"
-    # strLon = "-119.299"
-    # strLat = "35.8852"
     time_series_list = TimeSeriesData.objects.filter(lon = strLon , lat = strLat).values_list()
     time_series_list = list(sum(time_series_list, ()))
     del time_series_list[:2]
@@ -111,12 +109,10 @@ def chart(request):
     ma = folium.Map(location=[35.8831, -119.295], min_lat=34.0, max_lat=37.8,
                min_lon=-121.0, max_lon=-117.4, max_bounds=True, zoom_start=6, 
                min_zoom=6, max_zoom=10, width='%100', height='%100')
-
     # if there's an error about mouse position, then release comment-out
     # from folium.plugins import MousePosition
     # MousePosition().add_to(ma)
     # ma.add_child(folium.LatLngPopup())
-
     ma.add_child(LatLngPopupFix())
     ma = ma._repr_html_()
 

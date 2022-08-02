@@ -68,26 +68,6 @@
                     }
                 }
             });
-            
-            $("#mapid").on("click", function(){
-                console.log("from base.html mapid");
-                //location.reload(true);
-                //window.location.reload()
-                //window.location.replace("http://127.0.0.1:8000/chart")
-                //location = "http://127.0.0.1:8000/chart"
-            });
-
-            $.ajax({
-                type: "get",
-                headers:{'X-CSRFToken':'{{ csrf_token }}'},
-                url: "http://127.0.0.1:8000/chart",
-                success: function (response) {
-                    console.log("ajax in base.html (script) success");
-                },
-                error: function (response) {
-                    console.log("ajax in base.html (script) fail");
-                },
-            })
         </script>
         <script src="{% static 'main.js' %}"></script>
     </body>

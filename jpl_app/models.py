@@ -4,8 +4,6 @@ from django.db.models import Q, Deferrable, UniqueConstraint
 # Create your models here.
 
 class TimeSeriesData(models.Model):
-    # lon = models.CharField(max_length=140, blank=True, null=False, primary_key=True)
-    # lat = models.CharField(max_length=140, blank=True, null=False, primary_key=True)
     lon = models.CharField(max_length=140, blank=True, null=False, primary_key=True)
     lat = models.CharField(max_length=140, blank=True, null=False)
     number_20141108 = models.FloatField(db_column='20141108', blank=True, null=True)  # Field renamed because it wasn't a valid Python identifier.
