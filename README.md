@@ -33,7 +33,7 @@ Open pgAdmin 4 and when prompted set the password to "binary0111".
 In pgAdmin 4, follow the path dashboard_db -> Schemas -> public -> Tables.
 Create a table titled "time_series_data".
 Right click on the newly created table and Import the CSV file "InSAR_Data.csv".
-Now right click on columns and using PSQL Tool, run the following code: 
+Now right click on columns and using Query Tool, run the following code: 
 ```
 CREATE TABLE time_series_data 
 (
