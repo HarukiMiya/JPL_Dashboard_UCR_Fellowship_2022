@@ -41,37 +41,29 @@ class LatLngPopupFix(MacroElement):
                 {% macro script(this, kwargs) %}
                     let latVal = 0.0000;
                     let lngVal = 0.0000;
+                    let zoomLevel = 6;
                     var {{this.get_name()}} = L.popup();
                     function latLngPop(e) {
-                        {{this.get_name()}}
-                            .setLatLng(e.latlng)
-                            .setContent("Latitude: " + e.latlng.lat.toFixed(4) +
-                                        "<br>Longitude: " + e.latlng.lng.toFixed(4))
-                            .openOn({{this._parent.get_name()}});
                             latVal = e.latlng.lat.toFixed(4);
                             lngVal = e.latlng.lng.toFixed(4);
-                            latlngarr = [latVal,lngVal]
+                            latlngarr = [latVal,lngVal];
+                            zoomLevel = {{this._parent.get_name()}}.getZoom();
                     }
                     {{this._parent.get_name()}}.on('click', latLngPop).on('click', function(e){
-                        console.log(latlngarr);
                         $.ajax({
                             type: "get",
                             headers:{'X-CSRFToken':'{{ csrf_token }}'},
                             url: "http://127.0.0.1:8000/chart",
-                            data: { 'latVal': latVal, 'lngVal': lngVal },
+                            data: { 'latVal': latVal, 'lngVal': lngVal, 'zoomLevel': zoomLevel },
                             success: function (response) {
-                                parent.location.href = "/chart?latVal="+latVal+"&lngVal="+lngVal;
+                                parent.location.href = "/chart?latVal="+latVal+"&lngVal="+lngVal+"&zoomLevel="+zoomLevel;
                                 console.log("ajax in views success");
                             },
                             error: function (response) {
                                 console.log("ajax in views fail")
                             },
                         })
-                        //parent.getElementById("").innerHTML="hello";
-                        
                     });
-                    
-                    
                 {% endmacro %}
                 """)  # noqa
 
@@ -93,27 +85,40 @@ def binary_search(arr, head, tail, x):
         return arr[mid]
 
 def chart(request):
+    zoomlevel = request.GET.get('zoomLevel')
+    if zoomlevel is None:
+        zoomlevel = 6
+    else:
+        zoomlevel = int(zoomlevel)
     strLat = request.GET.get('latVal')
     strLon = request.GET.get('lngVal')
+    location = [35.8831, -119.295]
     if not strLat is None:
         strLat = str(request.GET.get('latVal'))
         strLon = str(request.GET.get('lngVal'))
         strLat = str(binary_search(lat_exist, 0, 1748, float(strLat)))
         strLon = str(binary_search(lng_exist, 0, 1654, float(strLon)))
+        location = [float(strLat),float(strLon)]
     time_series_list = TimeSeriesData.objects.filter(lon = strLon , lat = strLat).values_list()
     time_series_list = list(sum(time_series_list, ()))
     del time_series_list[:2]
     dataset = time_series_list
     dataset = ['NaN' if x==None else x for x in dataset]
 
-    ma = folium.Map(location=[35.8831, -119.295], min_lat=34.0, max_lat=37.8,
-               min_lon=-121.0, max_lon=-117.4, max_bounds=True, zoom_start=6, 
+    ma = folium.Map(location=location, min_lat=34.0, max_lat=37.8,
+               min_lon=-121.0, max_lon=-117.4, max_bounds=True, zoom_start=zoomlevel, 
                min_zoom=6, max_zoom=10, width='%100', height='%100')
+    print(zoomlevel)
     # if there's an error about mouse position, then release comment-out
     # from folium.plugins import MousePosition
     # MousePosition().add_to(ma)
     # ma.add_child(folium.LatLngPopup())
     ma.add_child(LatLngPopupFix())
+    tooltip = "Click me!"
+    if not strLat is None:
+        folium.Marker(
+            [float(strLat),float(strLon)], popup="Latitude: " + strLat + "<br>Longitude: " + strLon
+        ).add_to(ma)
     ma = ma._repr_html_()
 
     print("data: ")
