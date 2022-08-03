@@ -15,7 +15,7 @@ In recent years, there has been a significant increase in groundwater pumping in
 * Corona, Jason; BS in Computer Science at UCR (https://github.com/JasonC-tech)
 * Darch, Lili; BS in Computer Science at RCCD (https://github.com/LiliD001)
 * Miyazaki, Haruki; BS in Computer Science at UCR (https://github.com/HarukiMiya)
-* Rakesh, Ishika; BS in Computer Science with Business Applications at UCR
+* Rakesh, Ishika; BS in Computer Science with Business Applications at UCR (https://github.com/rakishika)
 
 
 ## How To Run
