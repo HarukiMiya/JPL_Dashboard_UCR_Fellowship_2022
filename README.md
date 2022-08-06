@@ -19,15 +19,20 @@ In recent years, there has been a significant increase in groundwater pumping in
 
 
 ## How To Run
+First, download and install all the necessary tools/software listed under the dependencies. 
+Next, clone the github repository and run the code.
+This will create the server necessary to run the website.
+Lastly, run the server in a web browser.
 
 ## Usage
 
 ## Diagrams
 
 ## Dependencies
+Install Django. The documentation can be found on their website [here](https://docs.djangoproject.com/en/4.0/topics/install/).
 Install PostgreSQL 14. It can be found directly on their website [here](https://www.postgresql.org/download/).
 Install pgAdmin 4. This can also be found directly on their website [here](https://www.pgadmin.org/download/).
-Download the CSV file "InSAR_Data.csv". This can be found at [here](https://drive.google.com/file/d/1VssVSU-Ijm6YoDmv3syT4DZZoeiAIQhV/view?usp=sharing).
+Download the CSV file "InSAR_Data.csv". This can be found [here](https://drive.google.com/file/d/1VssVSU-Ijm6YoDmv3syT4DZZoeiAIQhV/view?usp=sharing).
 
 Open pgAdmin 4 and when prompted set the password to "binary0111".
 In pgAdmin 4, follow the path dashboard_db -> Schemas -> public -> Tables.
