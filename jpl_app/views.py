@@ -43,6 +43,13 @@ def chart(request):
         ).add_to(ma)
     ma = ma._repr_html_()
 
+    strNone = ""
+
+    if all(i == 'NaN' for i in dataset):
+        strNone = "No dataset is detected."
+    else:
+        strNone = "Dataset is detected."
+
     print("data: ")
     print(dataset)
     print("lat: ")
@@ -51,6 +58,7 @@ def chart(request):
     print(strLon)
 
     context={
+        'strNone': strNone,
         'lat': strLat,
         'lng': strLon,
         'dataset': dataset,

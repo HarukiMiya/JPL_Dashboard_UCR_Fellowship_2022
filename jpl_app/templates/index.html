@@ -9,6 +9,7 @@
 {% block content %}
 <div class="section-map" id="mapid">
     {{ ma | safe }}
+    {{ strNone | safe }}
 </div>
 <form action="" method="get" id="mapform">
     {% csrf_token %}
