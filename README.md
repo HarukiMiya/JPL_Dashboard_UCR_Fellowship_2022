@@ -20,10 +20,7 @@ In recent years, there has been a significant increase in groundwater pumping in
 
 ## How To Run
 * First, download and install all the necessary tools/software listed under the dependencies. 
-* Next, clone the github repository and run the code:
-```
-python manage.py runserver
-```
+* Next, clone the github repository and run the code: ```python manage.py runserver```
 * This will start up a development server for this django project.
 * Lastly, Open a web browser with the given url link: ```http://127.0.0.1:8000/```
 
