@@ -36,9 +36,8 @@ Download the CSV file "InSAR_Data.csv". This can be found [here](https://drive.g
 
 Open pgAdmin 4 and when prompted set the password to "binary0111".
 In pgAdmin 4, follow the path dashboard_db -> Schemas -> public -> Tables.
-Create a table titled "time_series_data".
-Right click on the newly created table and Import the CSV file "InSAR_Data.csv".
-Now right click on columns and using Query Tool, run the following code: 
+Right click on Tables and click Query tool.
+Create a table titled "time_series_data" by running the following code on Query tool:
 ```
 CREATE TABLE time_series_data 
 (
@@ -156,9 +155,11 @@ CREATE TABLE time_series_data
     "20190122" real
 )
 ```
-
 This will create all the necessary columns for the dataset.
-Now, run the following code:
+
+Now, right click on the newly created table and Import the CSV file "InSAR_Data.csv".
+
+Now, run the following code on Query tool:
 ```
   SELECT * FROM time_series_data
 ```
