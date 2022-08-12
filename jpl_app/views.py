@@ -41,6 +41,19 @@ def chart(request):
         folium.Marker(
             [float(strLat),float(strLon)], popup="Latitude: " + strLat + "<br>Longitude: " + strLon
         ).add_to(ma)
+
+    from folium import plugins
+    from folium.plugins import HeatMap
+    import pandas as pd
+    df1 = pd.read_csv("./jpl_app/static/InSAR_20190122.csv")
+    print(df1)
+    
+    # df1 = TimeSeriesData.objects.all().values_list("lat", "lon","number_20190122")
+    # df1 = list(sum(df1, ()))
+    # print(df1)
+    HeatMap(df1, min_opacity=.10, radius=5, blur=1 ).add_to(folium.FeatureGroup(name='Heat Map').add_to(ma))
+    folium.LayerControl().add_to(ma)
+
     ma = ma._repr_html_()
 
     strNone = ""
