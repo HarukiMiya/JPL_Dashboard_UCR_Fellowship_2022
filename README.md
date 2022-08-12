@@ -19,10 +19,10 @@ In recent years, there has been a significant increase in groundwater pumping in
 
 
 ## How To Run
-First, download and install all the necessary tools/software listed under the dependencies. 
-Next, clone the github repository and run the code.
-This will create the server necessary to run the website.
-Lastly, run the server in a web browser.
+* First, download and install all the necessary tools/software listed under the dependencies. 
+* Next, clone the github repository and run the code: ```python manage.py runserver```
+* This will start up a development server for this django project.
+* Lastly, Open a web browser with the given url link: ```http://127.0.0.1:8000/```
 
 ## Usage
 
@@ -36,9 +36,8 @@ Download the CSV file "InSAR_Data.csv". This can be found [here](https://drive.g
 
 Open pgAdmin 4 and when prompted set the password to "binary0111".
 In pgAdmin 4, follow the path dashboard_db -> Schemas -> public -> Tables.
-Create a table titled "time_series_data".
-Right click on the newly created table and Import the CSV file "InSAR_Data.csv".
-Now right click on columns and using Query Tool, run the following code: 
+Right click on Tables and click Query tool.
+Create a table titled "time_series_data" by running the following code in Query tool:
 ```
 CREATE TABLE time_series_data 
 (
@@ -156,13 +155,14 @@ CREATE TABLE time_series_data
     "20190122" real
 )
 ```
-
 This will create all the necessary columns for the dataset.
-Now, run the following code:
+
+Now, right click on the newly created table and Import the CSV file "InSAR_Data.csv".
+
+Now, run the following code on Query tool:
 ```
   SELECT * FROM time_series_data
 ```
-  
-You should now be able to see all the data, run the code to create the server, and have access to the server.
+You should now be able to see all the data.
 
 ## Authors and Acknowledgment
