@@ -3,8 +3,12 @@ import folium
 from .models import TimeSeriesData
 from .vardata import lng_exist, lat_exist
 from .utilities import LatLngPopupFix, binary_search
+from folium import plugins
+from folium.plugins import HeatMap
+import pandas as pd
 
 def chart(request):
+    # latCenter and lngCenter are for keeping the current location of folium map
     latCenter = request.GET.get('latCenter')
     lngCenter = request.GET.get('lngCenter')
     if latCenter is None:
@@ -14,16 +18,19 @@ def chart(request):
         latCenter = float(latCenter)
         lngCenter = float(lngCenter)
     center = [latCenter,lngCenter]
+
     zoomlevel = request.GET.get('zoomLevel')
     if zoomlevel is None:
         zoomlevel = 6
     else:
         zoomlevel = int(zoomlevel)
+    
     strLat = request.GET.get('latVal')
     strLon = request.GET.get('lngVal')
     if not strLat is None:
         strLat = str(request.GET.get('latVal'))
         strLon = str(request.GET.get('lngVal'))
+        # find the closest lat/lon
         strLat = str(binary_search(lat_exist, 0, 1748, float(strLat)))
         strLon = str(binary_search(lng_exist, 0, 1654, float(strLon)))
     time_series_list = TimeSeriesData.objects.filter(lon = strLon , lat = strLat).values_list()
@@ -36,39 +43,33 @@ def chart(request):
                min_lon=-121.0, max_lon=-117.4, max_bounds=True, zoom_start=zoomlevel, 
                min_zoom=6, max_zoom=10, width='%100', height='%100')
 
+    # get lat/lon by clicking map and send them
     ma.add_child(LatLngPopupFix())
+
     if not strLat is None:
         folium.Marker(
             [float(strLat),float(strLon)], popup="Latitude: " + strLat + "<br>Longitude: " + strLon
         ).add_to(ma)
 
-    from folium import plugins
-    from folium.plugins import HeatMap
-    import pandas as pd
     df1 = pd.read_csv("./jpl_app/static/InSAR_20190122.csv")
-    print(df1)
-    
-    # df1 = TimeSeriesData.objects.all().values_list("lat", "lon","number_20190122")
-    # df1 = list(sum(df1, ()))
-    # print(df1)
-    HeatMap(df1, min_opacity=.10, radius=5, blur=1 ).add_to(folium.FeatureGroup(name='Heat Map').add_to(ma))
+    df_classification = pd.read_csv("./jpl_app/static/InSAR_classification.csv", usecols=[0,1,112])
+
+    HeatMap(df1, min_opacity=.10, radius=5, blur=1 ).add_to(folium.FeatureGroup(name='Subsidence').add_to(ma))
+
+    # blue area is non-change (val=1)
+    # orange area is overall-increasing (val=2)
+    # red area is overall-increasing (val=3)
+    HeatMap(df_classification, min_opacity=.10, radius=1, blur=1 ).add_to(folium.FeatureGroup(name='Classification').add_to(ma))
+
     folium.LayerControl().add_to(ma)
 
     ma = ma._repr_html_()
 
     strNone = ""
-
     if all(i == 'NaN' for i in dataset):
         strNone = "No dataset is detected."
     else:
         strNone = "Dataset is detected."
-
-    print("data: ")
-    print(dataset)
-    print("lat: ")
-    print(strLat)
-    print("lng: ")
-    print(strLon)
 
     context={
         'strNone': strNone,
