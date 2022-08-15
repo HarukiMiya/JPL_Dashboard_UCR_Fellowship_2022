@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import Q, Deferrable, UniqueConstraint
 
 # Create your models here.
 
@@ -120,4 +119,197 @@ class TimeSeriesData(models.Model):
     class Meta:
         managed = False
         db_table = 'time_series_data'
+        unique_together = [['lon', 'lat']]
+
+class GroundwaterData(models.Model):
+    lon = models.CharField(max_length=140, blank=True, null=False, primary_key=True)
+    lat = models.CharField(max_length=140, blank=True, null=False)
+    number_2016_02_19 = models.FloatField(db_column='2016-02-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_03_02 = models.FloatField(db_column='2016-03-02', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_03_14 = models.FloatField(db_column='2016-03-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_03_26 = models.FloatField(db_column='2016-03-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_04_07 = models.FloatField(db_column='2016-04-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_04_19 = models.FloatField(db_column='2016-04-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_05_01 = models.FloatField(db_column='2016-05-01', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_05_13 = models.FloatField(db_column='2016-05-13', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_05_25 = models.FloatField(db_column='2016-05-25', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_06_06 = models.FloatField(db_column='2016-06-06', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_06_30 = models.FloatField(db_column='2016-06-30', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_07_24 = models.FloatField(db_column='2016-07-24', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_08_17 = models.FloatField(db_column='2016-08-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_09_10 = models.FloatField(db_column='2016-09-10', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_09_22 = models.FloatField(db_column='2016-09-22', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_10_04 = models.FloatField(db_column='2016-10-04', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_10_16 = models.FloatField(db_column='2016-10-16', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_10_28 = models.FloatField(db_column='2016-10-28', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_11_09 = models.FloatField(db_column='2016-11-09', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_11_21 = models.FloatField(db_column='2016-11-21', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_12_03 = models.FloatField(db_column='2016-12-03', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_12_15 = models.FloatField(db_column='2016-12-15', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_12_27 = models.FloatField(db_column='2016-12-27', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_08 = models.FloatField(db_column='2017-01-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_14 = models.FloatField(db_column='2017-01-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_20 = models.FloatField(db_column='2017-01-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_26 = models.FloatField(db_column='2017-01-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_02_01 = models.FloatField(db_column='2017-02-01', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_02_13 = models.FloatField(db_column='2017-02-13', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_02_25 = models.FloatField(db_column='2017-02-25', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_03_09 = models.FloatField(db_column='2017-03-09', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_03_21 = models.FloatField(db_column='2017-03-21', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_04_02 = models.FloatField(db_column='2017-04-02', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_04_14 = models.FloatField(db_column='2017-04-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_04_26 = models.FloatField(db_column='2017-04-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_05_08 = models.FloatField(db_column='2017-05-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_05_20 = models.FloatField(db_column='2017-05-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_06_01 = models.FloatField(db_column='2017-06-01', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_06_13 = models.FloatField(db_column='2017-06-13', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_06_25 = models.FloatField(db_column='2017-06-25', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_07_07 = models.FloatField(db_column='2017-07-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_07_19 = models.FloatField(db_column='2017-07-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_07_31 = models.FloatField(db_column='2017-07-31', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_08_12 = models.FloatField(db_column='2017-08-12', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_08_24 = models.FloatField(db_column='2017-08-24', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_09_05 = models.FloatField(db_column='2017-09-05', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_09_17 = models.FloatField(db_column='2017-09-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_09_29 = models.FloatField(db_column='2017-09-29', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_10_11 = models.FloatField(db_column='2017-10-11', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_10_23 = models.FloatField(db_column='2017-10-23', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_11_04 = models.FloatField(db_column='2017-11-04', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_11_16 = models.FloatField(db_column='2017-11-16', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_11_28 = models.FloatField(db_column='2017-11-28', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_12_10 = models.FloatField(db_column='2017-12-10', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_12_22 = models.FloatField(db_column='2017-12-22', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_01_03 = models.FloatField(db_column='2018-01-03', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_01_15 = models.FloatField(db_column='2018-01-15', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_01_27 = models.FloatField(db_column='2018-01-27', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_02_08 = models.FloatField(db_column='2018-02-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_02_20 = models.FloatField(db_column='2018-02-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_03_04 = models.FloatField(db_column='2018-03-04', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_03_16 = models.FloatField(db_column='2018-03-16', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_03_28 = models.FloatField(db_column='2018-03-28', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_04_09 = models.FloatField(db_column='2018-04-09', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_04_21 = models.FloatField(db_column='2018-04-21', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_05_03 = models.FloatField(db_column='2018-05-03', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_05_15 = models.FloatField(db_column='2018-05-15', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_05_27 = models.FloatField(db_column='2018-05-27', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_06_08 = models.FloatField(db_column='2018-06-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_06_20 = models.FloatField(db_column='2018-06-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_07_02 = models.FloatField(db_column='2018-07-02', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_07_14 = models.FloatField(db_column='2018-07-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_07_26 = models.FloatField(db_column='2018-07-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_08_07 = models.FloatField(db_column='2018-08-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_08_19 = models.FloatField(db_column='2018-08-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_08_31 = models.FloatField(db_column='2018-08-31', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_09_12 = models.FloatField(db_column='2018-09-12', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_09_24 = models.FloatField(db_column='2018-09-24', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_10_06 = models.FloatField(db_column='2018-10-06', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_10_18 = models.FloatField(db_column='2018-10-18', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_10_30 = models.FloatField(db_column='2018-10-30', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_11_11 = models.FloatField(db_column='2018-11-11', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_11_17 = models.FloatField(db_column='2018-11-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+
+    class Meta:
+        managed = False
+        db_table = 'groundwater_data'
+        unique_together = [['lon', 'lat']]
+
+class PrecipitationData(models.Model):
+    lon = models.CharField(max_length=140, blank=True, null=False, primary_key=True)
+    lat = models.CharField(max_length=140, blank=True, null=False)
+    number_2016_01_14 = models.FloatField(db_column='2016-01-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_01_26 = models.FloatField(db_column='2016-01-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_02_07 = models.FloatField(db_column='2016-02-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_02_19 = models.FloatField(db_column='2016-02-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_03_02 = models.FloatField(db_column='2016-03-02', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_03_14 = models.FloatField(db_column='2016-03-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_03_26 = models.FloatField(db_column='2016-03-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_04_07 = models.FloatField(db_column='2016-04-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_04_19 = models.FloatField(db_column='2016-04-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_05_01 = models.FloatField(db_column='2016-05-01', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_05_13 = models.FloatField(db_column='2016-05-13', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_05_25 = models.FloatField(db_column='2016-05-25', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_06_06 = models.FloatField(db_column='2016-06-06', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_06_30 = models.FloatField(db_column='2016-06-30', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_07_24 = models.FloatField(db_column='2016-07-24', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_08_17 = models.FloatField(db_column='2016-08-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_09_10 = models.FloatField(db_column='2016-09-10', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_09_22 = models.FloatField(db_column='2016-09-22', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_10_04 = models.FloatField(db_column='2016-10-04', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_10_16 = models.FloatField(db_column='2016-10-16', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_10_28 = models.FloatField(db_column='2016-10-28', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_11_09 = models.FloatField(db_column='2016-11-09', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_11_21 = models.FloatField(db_column='2016-11-21', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_12_03 = models.FloatField(db_column='2016-12-03', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_12_15 = models.FloatField(db_column='2016-12-15', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2016_12_27 = models.FloatField(db_column='2016-12-27', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_08 = models.FloatField(db_column='2017-01-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_14 = models.FloatField(db_column='2017-01-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_20 = models.FloatField(db_column='2017-01-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_01_26 = models.FloatField(db_column='2017-01-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_02_01 = models.FloatField(db_column='2017-02-01', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_02_13 = models.FloatField(db_column='2017-02-13', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_02_25 = models.FloatField(db_column='2017-02-25', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_03_09 = models.FloatField(db_column='2017-03-09', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_03_21 = models.FloatField(db_column='2017-03-21', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_04_02 = models.FloatField(db_column='2017-04-02', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_04_14 = models.FloatField(db_column='2017-04-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_04_26 = models.FloatField(db_column='2017-04-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_05_08 = models.FloatField(db_column='2017-05-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_05_20 = models.FloatField(db_column='2017-05-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_06_01 = models.FloatField(db_column='2017-06-01', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_06_13 = models.FloatField(db_column='2017-06-13', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_06_25 = models.FloatField(db_column='2017-06-25', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_07_07 = models.FloatField(db_column='2017-07-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_07_19 = models.FloatField(db_column='2017-07-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_07_31 = models.FloatField(db_column='2017-07-31', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_08_12 = models.FloatField(db_column='2017-08-12', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_08_24 = models.FloatField(db_column='2017-08-24', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_09_05 = models.FloatField(db_column='2017-09-05', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_09_17 = models.FloatField(db_column='2017-09-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_09_29 = models.FloatField(db_column='2017-09-29', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_10_11 = models.FloatField(db_column='2017-10-11', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_10_23 = models.FloatField(db_column='2017-10-23', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_11_04 = models.FloatField(db_column='2017-11-04', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_11_16 = models.FloatField(db_column='2017-11-16', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_11_28 = models.FloatField(db_column='2017-11-28', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_12_10 = models.FloatField(db_column='2017-12-10', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2017_12_22 = models.FloatField(db_column='2017-12-22', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_01_03 = models.FloatField(db_column='2018-01-03', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_01_15 = models.FloatField(db_column='2018-01-15', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_01_27 = models.FloatField(db_column='2018-01-27', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_02_08 = models.FloatField(db_column='2018-02-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_02_20 = models.FloatField(db_column='2018-02-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_03_04 = models.FloatField(db_column='2018-03-04', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_03_16 = models.FloatField(db_column='2018-03-16', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_03_28 = models.FloatField(db_column='2018-03-28', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_04_09 = models.FloatField(db_column='2018-04-09', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_04_21 = models.FloatField(db_column='2018-04-21', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_05_03 = models.FloatField(db_column='2018-05-03', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_05_15 = models.FloatField(db_column='2018-05-15', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_05_27 = models.FloatField(db_column='2018-05-27', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_06_08 = models.FloatField(db_column='2018-06-08', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_06_20 = models.FloatField(db_column='2018-06-20', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_07_02 = models.FloatField(db_column='2018-07-02', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_07_14 = models.FloatField(db_column='2018-07-14', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_07_26 = models.FloatField(db_column='2018-07-26', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_08_07 = models.FloatField(db_column='2018-08-07', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_08_19 = models.FloatField(db_column='2018-08-19', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_08_31 = models.FloatField(db_column='2018-08-31', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_09_12 = models.FloatField(db_column='2018-09-12', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_09_24 = models.FloatField(db_column='2018-09-24', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_10_06 = models.FloatField(db_column='2018-10-06', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_10_18 = models.FloatField(db_column='2018-10-18', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_10_30 = models.FloatField(db_column='2018-10-30', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_11_11 = models.FloatField(db_column='2018-11-11', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_11_17 = models.FloatField(db_column='2018-11-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_11_23 = models.FloatField(db_column='2018-11-23', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_12_05 = models.FloatField(db_column='2018-12-05', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_12_17 = models.FloatField(db_column='2018-12-17', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2018_12_29 = models.FloatField(db_column='2018-12-29', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2019_01_10 = models.FloatField(db_column='2019-01-10', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+    number_2019_01_22 = models.FloatField(db_column='2019-01-22', blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it wasn't a valid Python identifier.
+
+    class Meta:
+        managed = False
+        db_table = 'precipitation_data'
         unique_together = [['lon', 'lat']]

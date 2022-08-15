@@ -9,7 +9,11 @@
 {% block content %}
 <div class="section-map" id="mapid">
     {{ ma | safe }}
-    {{ strNone | safe }}
+    <p> 
+        {{ strNone | safe }}<br>
+        {{ strGr | safe }}<br>
+        {{ strPr | safe }}
+    </p>
 </div>
 <form action="" method="get" id="mapform">
     {% csrf_token %}
@@ -25,4 +29,3 @@
     <canvas id="myChart" style="margin-top:-5vh;width:auto;height: 50vh;"></canvas>
 </div>
 {% endblock %}
-
