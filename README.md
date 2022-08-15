@@ -34,6 +34,7 @@ Install PostgreSQL 14. It can be found directly on their website [here](https://
 Install pgAdmin 4. This can also be found directly on their website [here](https://www.pgadmin.org/download/).\
 Download the CSV file "InSAR_classification.csv". This can be found [here](https://drive.google.com/file/d/16-IoFQkVOHvRwyuKz8qgV-cgfmFcNwL8/view?usp=sharing) and move it in static folder.\
 Download the CSV file "InSAR_20190122.csv". This can be found [here](https://drive.google.com/file/d/1XOCf7DHEuD0aVvRPsYFjhilpGFu1g3JH/view?usp=sharing) and move it in static folder.\
+Download the CSV file "InSAR_waterground.csv". This can be found [here](https://drive.google.com/file/d/1zw-rAUJE5hARRGc-clkY2xYNgDYQoZ-_/view?usp=sharing) and move it in static folder.\
 Download the CSV file "InSAR_Data.csv". This can be found [here](https://drive.google.com/file/d/1VssVSU-Ijm6YoDmv3syT4DZZoeiAIQhV/view?usp=sharing).
 
 Open pgAdmin 4 and when prompted set the password to "binary0111".
