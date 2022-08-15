@@ -2,7 +2,7 @@ from time import strptime
 from django.shortcuts import render
 import folium
 from .models import GroundwaterData, PrecipitationData, TimeSeriesData
-from .vardata import lng_exist, lat_exist, groundwater_lng_exist, groundwater_lat_exist, precipitation_lng_exist, precipitation_lat_exist
+from .vardata import lng_exist, lat_exist, groundwater_lat_lng, precipitation_lat_lng
 from .utilities import LatLngPopupFix, binary_search
 from folium import plugins
 from folium.plugins import HeatMap
@@ -34,10 +34,6 @@ def chart(request):
         # find the closest lat/lon
         strLat = str(binary_search(lat_exist, 0, 1748, float(strLat)))
         strLon = str(binary_search(lng_exist, 0, 1654, float(strLon)))
-        strLat_ground = str(binary_search(groundwater_lat_exist, 0, 1349, float(strLat)))
-        strLon_ground = str(binary_search(groundwater_lng_exist, 0, 1123, float(strLon)))
-        strLat_precip = str(binary_search(precipitation_lat_exist, 0, 1349, float(strLat)))
-        strLon_precip = str(binary_search(precipitation_lng_exist, 0, 1123, float(strLat)))
     
     time_series_list = TimeSeriesData.objects.filter(lon = strLon , lat = strLat).values_list()
     time_series_list = list(sum(time_series_list, ()))
@@ -49,7 +45,11 @@ def chart(request):
     for i in range(len(dataset_cols)):
         dataset_cols[i] = dataset_cols[i].split("_")[1:][0]
 
-    groundwater_list = GroundwaterData.objects.filter(lon = strLon_ground , lat = strLat_ground).values_list()
+    import bisect
+    gkey = bisect.bisect_left(list(groundwater_lat_lng.keys()), strLat)
+    dictbasedkey = {key: groundwater_lat_lng[key] for key in groundwater_lat_lng.keys() & {list(groundwater_lat_lng.keys())[gkey-1]}}
+    gval = bisect.bisect_left(list(dictbasedkey.values()), strLon)
+    groundwater_list = GroundwaterData.objects.filter(lon = list(dictbasedkey.values())[gval-1] , lat = list(groundwater_lat_lng.keys())[gkey-1]).values_list()
     groundwater_list = list(sum(groundwater_list, ()))
     del groundwater_list[:2]
     dataset_groundwater = groundwater_list
@@ -59,7 +59,11 @@ def chart(request):
     for i in range(len(groundwater_cols)):
         groundwater_cols[i] = ''.join(groundwater_cols[i].split("_")[1:])
 
-    precipitation_list = PrecipitationData.objects.filter(lon = strLon_precip , lat = strLat_precip).values_list()
+    pkey = bisect.bisect_left(list(precipitation_lat_lng.keys()), strLat)
+    dictbasedkey = {key: precipitation_lat_lng[key] for key in precipitation_lat_lng.keys() & {list(precipitation_lat_lng.keys())[pkey-1]}}
+    pval = bisect.bisect_left(list(dictbasedkey.values()), strLon)
+    precipitation_list = PrecipitationData.objects.filter(lon = list(dictbasedkey.values())[pval-1] , lat = list(precipitation_lat_lng.keys())[pkey-1]).values_list()
+    # print(strLon_precip, strLat_precip)
     precipitation_list = list(sum(precipitation_list, ()))
     del precipitation_list[:2]
     dataset_precipitation = precipitation_list
@@ -68,8 +72,8 @@ def chart(request):
     del precipitation_cols[:2]
     for i in range(len(precipitation_cols)):
         precipitation_cols[i] = ''.join(precipitation_cols[i].split("_")[1:])
-    print(precipitation_cols)
-    print(dataset_precipitation)
+    # print(precipitation_cols)
+    # print(dataset_precipitation)
 
     ma = folium.Map(location=center, min_lat=34.0, max_lat=37.8,
                min_lon=-121.0, max_lon=-117.4, max_bounds=True, zoom_start=zoomlevel, 
