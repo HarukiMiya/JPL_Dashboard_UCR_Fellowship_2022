@@ -272,7 +272,7 @@ CREATE TABLE groundwater_data
 ```
 This will create all the necessary columns for the dataset.
 
-Now, right click on the newly created table and Import the CSV file "InSAR_Data.csv".
+Now, right click on the newly created table and Import the CSV file "InSAR_groundwater.csv".
 
 Now, run the following code on Query tool:
 ```
@@ -384,7 +384,7 @@ CREATE TABLE rainwater_data
 ```
 This will create all the necessary columns for the dataset.
 
-Now, right click on the newly created table and Import the CSV file "InSAR_Data.csv".
+Now, right click on the newly created table and Import the CSV file "rainfall_modified.csv".
 
 Now, run the following code on Query tool:
 ```
