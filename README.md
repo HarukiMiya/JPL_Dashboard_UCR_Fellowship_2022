@@ -3,9 +3,7 @@
 ## Table of Contents
 - [Overview](#overview)
 - [How To Run](#how-to-run)
-- [Usage](#usage)
-- [Diagrams](#diagrams)
-- [Dependencies](#dependencies)
+- [Usage and Dependencies](#usage-and-dependencies)
 - [Authors and Acknowledgment](#authors-and-acknowledgment)
 
 ## Overview
@@ -26,11 +24,7 @@ Here is the [Demo](https://youtu.be/xr3SV-wODyA)
 * This will start up a development server for this django project.
 * Lastly, Open a web browser with the given url link: ```http://127.0.0.1:8000/```
 
-## Usage
-
-## Diagrams
-
-## Dependencies
+## Usage and Dependencies
 Install Django. The documentation can be found on their website [here](https://docs.djangoproject.com/en/4.0/topics/install/).\
 Install PostgreSQL 14. It can be found directly on their website [here](https://www.postgresql.org/download/).\
 Install pgAdmin 4. This can also be found directly on their website [here](https://www.pgadmin.org/download/).\
